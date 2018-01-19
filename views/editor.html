@@ -1,0 +1,119 @@
+{% extends 'layout.html' %}
+
+
+{% block gallery %}
+<body>
+<div style="background: url(/img/memes.jpg); width: 100%; height: 155%">
+    <div class="background" style="opacity: .98">
+    <div class="site-wrapper" style="margin-top: 0; height: 100%;">
+        <div class="site-wrapper-inner">
+                <header class="col-md-12" style="background-color: rgba(0, 0, 0, .80); margin-top: -50px;">
+                    <div class="navbar navbar-dark " style="width: auto">
+                        <div class="container d-flex justify-content-between">
+                            <img src="/img/favicon.ico" style="width: 80px; height: 90px;">
+                            <span class="navbar-brand text-left" style="position: relative; left: -15%;">Got our Memes</span>
+                            <span class="text-right" style="right: -14%; position: relative">Hi, {{user}}!</span>
+                            <a href="/" class="btn btn-danger">
+                                <span>
+                                    <img src="/img/log-out.png" alt="">
+                                </span> Sign out</a>
+                        </div>
+                    </div>
+                </header>
+                <main role="main" class="col-md-8 offset-3">
+                    <div class="editor">
+                        <input type="hidden" value="{{idImg}}" id="idEditImg">
+                        <div class="canvas">
+                            <canvas id="canvas" width="600" height="500">
+
+                            </canvas>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="controls">
+                            <div class="options input-group-sm" style="display: inline-flex">
+                                <div class="form-group">
+                                    <label for="color" class="lead"><small>Choose your pencil color</small></label><br>
+                                    <input type="color" value="#000000" style="background-color: bisque; width: 45px; height: 45px;
+                                    border: 3px solid bisque; border-radius: 2px;">
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <label for="range" class="lead"><small>Choose the density of your pencil</small></label><br>
+                                    <input type="range" min="5" max="30" value="15" class="form-control-range" style="background-color: bisque;
+                                    width: 150px; height: 30px; border: 3px solid bisque; border-radius: 6px; margin: .5em auto; margin-top: 0; margin-bottom: -30px; position: relative"><br>
+                                    <span id="rangeVal" class="lead" style="font-weight: 300; font-size: .75em; margin: 0 auto; background: transparent; position: relative"></span>
+                                </div>                               
+                            </div>
+                            <br>
+                            <a href="/gallery" class="btn btn-lg btn-success" onclick="$('{{img}}').val();document.forms[0].submit();">Save</a>
+                            <a href="/gallery" class="btn btn-lg btn-danger">Return</a>
+                        </div>
+                    </div>
+                </main>
+
+                <footer class="text-muted">
+                    <div class="container">
+                        <p class="float-right">
+                            <a href="#">Back to top</a>
+                        </p>
+                        <p class="inner">
+                            <small> This page has been inspired by the
+                                <a href="https://getbootstrap.com/">Bootstrap</a> Templates.
+                                <br> localhost website has been made by
+                                <a href="https://twitter.com/AndlerRL">@Andler</a>. </small>
+                        </p>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}
+
+<!-- <script>
+    var App = {};
+
+        App.init = () => {
+            var canvas = $('canvas');
+
+            var ctx = App.canvas.getContext("2d");
+            ctx.fillStyle = 'solid';
+            ctx.strokeStyle = 'orange';
+            ctx.lineWidth = 4;
+            ctx.lineCap = 'round';
+
+            App.draw = (x, y, type) => {
+                if (typeof 'dragstart') {
+                    App.ctx.beginPath();
+                    App.ctx.moveTo(x, y);
+                } else if (typeof 'drag') {
+                    App.ctx.lineTo(x, y);
+                    App.ctx.stroke();
+                } else {
+                    App.ctx.closePath();
+                }
+                return;
+            }
+
+            $('canvas').live('drag dragstart dragend', (a) => {
+                type = a.handleObj.type;
+                offset = $(this).offset();
+
+                a.offsetX = a.layerX - offset.left;
+                a.offsetY = a.layerY - offset.top;
+                x = a.offsetX;
+                y = a.offsetY;
+
+                App.draw(x, y, type);
+                App.socket.emit('drawClick', {
+                    x: x,
+                    y: y,
+                    type: type
+                });
+                return;
+            });
+        }
+</script> -->

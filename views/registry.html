@@ -1,0 +1,66 @@
+{% extends 'layout.html' %}
+
+{% block form %}
+<div class="site-wrapper" style="margin-top: -40px; height: 140%;">
+	<div class="site-wrapper-inner">
+		<div class="cover-container">
+			<header class="masthead clearfix" style="position: relative;">
+				<div class="inner">
+					<h3 class="masthead-brand">
+						<img src="/img/favicon.ico" style="width: 80px; height: 90px; margin-top: -40px;">
+						Got our Memes</h3>
+					<nav class="nav nav-masthead">
+						<a class="nav-link" href="/">Home</a>
+						<a class="nav-link" href="/gallery">Gallery</a>
+						<a class="nav-link active" href="/login">Sign Up</a>
+					</nav>
+				</div>
+			</header>
+			<br>
+			<div class="col-md-6 offset-3">
+				<form action="/registry" role="form" method="POST">
+					<h3 class="form-sigin-heading">Fill out the form in order to continue</h3>
+				    <div class="form-group">
+				        <label for="inputName">Name <span style="color: tomato; font-weight: bolder">*</span></label>
+				        <input type="text" name="name" class="form-control bs-tooltip-right" id="inputName" required data-toggle="tooltip" data-placement="right" title="Must be your first name and last name in  order to create your profile. e.g.: Steve Carrel">
+				    </div>
+
+				    <div class="form-group">
+				        <label for="inputAge">Age</label>
+				        <input type="text" name="age" class="form-control bs-tooltip-right" id="inputAge" data-toggle="tooltip" data-placement="right" title="Must to be only your age. e.g.: 23">
+				    </div>
+
+					<div class="form-group">
+				        <label for="inputEmail">Email Address <span style="color: tomato; font-weight: bolder">*</span></label>
+				        <input type="email" name="email" class="form-control bs-tooltip-right" id="inputEmail" data-toggle="tooltip" data-placement="right" placeholder="example@example.com">
+				    </div>
+
+				    <div class="form-group">
+				        <label for="inputUser">Username <span style="color: tomato; font-weight: bolder">*</span></label>
+				        <input type="text" name="user" class="form-control bs-tooltip-right" data-toggle="tooltip" data-placement="right" id="inputUser" title="Your username can be between numbers (0 - 9) and letters (a - z) and if you like, you can add special characters like: _ - ! '' / $ # ? = * + ">
+				    </div>
+
+				    <div class="form-group">
+				        <label for="inputPassword1">Password <span style="color: tomato; font-weight: bolder">*</span></label>
+				        <input type="password" name="password" class="form-control bs-tooltip-right" id="inputPassword1" data-toggle="tooltip" data-placement="right" title="Password must be between numbers (0 - 9) and letters (a - z). For more security, use capital letters.">
+					</div>
+					
+					<div class="form-group">
+						<label for="inputConfirmPassword1">Confirm Password <span style="color: tomato; font-weight: bolder">*</span></label>
+						<input type="password" name="passwordConfirm" class="form-control bs-tooltip-right" data-placement="right" id="inputConfirmPassword1" data-toggle="tooltip" title="Confirm your Password">
+					</div>
+					<span id="msgError" style="color: tomato; font-weight: bolder; text-align: center"></span>
+
+					<button type="submit" class="btn btn-lg btn-success"> Submit </button>
+				</form>
+			</div>
+			<br>
+			<footer>
+				<div class="inner">
+					<p><small> <span style="color: tomato; font-weight: bolder">*</span> Required fields.</small></p>
+				</div>
+			</footer>
+		</div>
+	</div>
+</div>
+{% endblock %}

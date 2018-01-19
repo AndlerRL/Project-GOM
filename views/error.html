@@ -1,0 +1,34 @@
+{% extends 'layout.html' %}
+
+{% block error %}
+<body>
+    <div class="site-wrapper" style="margin-top: -40px; height: 140%;">
+        <div class="site-wrapper-inner">
+            <div class="cover-container">
+                <header class="masthead clearfix">
+                    <div class="inner">
+                        <h3 class="masthead-brand">
+                            <img src="/img/favicon.ico" style="width: 80px; height: 90px; margin-top: -40px;">
+                            Got our Memes</h3>
+                        <nav class="nav nav-masthead">
+                            <a class="nav-link" href="/">Home</a>
+                            <a class="nav-link" href="/gallery">Gallery</a>
+                            <a class="nav-link" href="/login">Sign In</a>
+                        </nav>
+                    </div>
+                </header>
+
+                <main role="main" class="lead">
+                    <img src="/img/oops.jpg" width="285" height="320" style="margin-top: -280px;">
+                    <br>
+                    Something went wrong, sorry :( 
+                    <br>
+                    <br>
+                    <br>
+                    <a href="/login" class="btn btn-lg btn-danger">Return</a>
+                </main>
+            </div>
+        </div>
+    </div>
+</body>
+{% endblock %}

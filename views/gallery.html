@@ -1,0 +1,81 @@
+{% extends 'layout.html' %}
+
+{% block gallery %}
+<div class="site-wrapper" style="margin-top: -40px; height: 120%; padding-left: 0;">
+	<header class="col-md-12" style="background-color: rgba(0, 0, 0, .40)">
+		<div class="navbar navbar-dark " style="width: auto">
+			<div class="container d-flex justify-content-between">
+				<img src="/img/favicon.ico" style="width: 80px; height: 90px;">
+				<span class="navbar-brand text-left" style="position: relative; left: -15.1%;">
+					Got our Memes
+				</span>
+				<span class="text-right" style="right: -15%; position: relative">
+					Hi, {{user}}!
+				</span>
+				<a href="/" class="btn btn-danger"><span><img src="/img/log-out.png" alt=""></span> Sign out</a>
+			</div>
+		</div>
+	</header>
+
+	<main role="main" class="col-md-10 offset-1">
+		<section class="jumbotron text-center" style="border-top-right-radius: 0; border-top-left-radius: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0">
+			<div class="container">
+				<h1 class="jumbotron-heading">See the Memes</h1>
+				<p class="lead text-muted">Here, as you may see, you can pick up any photo from<br> this gallery so you can edit them as you like in real-time! <br>
+				Don't have any proyect or do not see any photos yet?<br>Upload one and share it!</p>
+				<a class="btn btn-lg btn-primary" href="/upload">
+					<span>
+						<img src="/img/upload.png">
+					</span> 
+					Upload
+				</a>
+			</div>
+		</section>
+
+		<div class="album text-muted">
+
+			<div class="container">
+				<form action="/editor" role="form" method="POST">
+				{% for img in imgs %}
+				<div class="row" style="display: inline; margin: 0 auto;">
+					<div class="card">
+						<img src="{{img}}" alt="Meme Card" width="280" height="280" style="position: relative; margin: 0 auto; cursor: pointer" data-toggle="tooltip" title="Uploaded by {{user}}" onclick="$('#idImg').val('{{img}}');document.forms[0].submit();">
+						<p class="card-text" style="text-shadow: none">
+							By <span style="color:darkorchid">
+								{{user}}
+							</span>
+						</p>
+						<div style="display: inline-block;">
+							<button class="btn btn-primary" onclick="$('#idImg').val('{{img}}');document.forms[0].submit();">
+							<span>
+								<img src="/img/edit.png">
+							</span> 
+							Edit</button>
+						<a class="btn btn-primary" href="{{img}}" download="_gotit_{{img}}">
+							<span>
+								<img src="/img/download.png">
+							</span> 
+							Download</a>
+						</div>
+					</div>
+				</div>
+				{% endfor %}
+				<input type="hidden" id="idImg" name="idImg">
+			</div>
+			</form>
+		</div>
+	</main>
+
+	<footer class="text-muted">
+		<div class="container">
+			<p class="float-right">
+				<a href="#" style="color: tomato">Back to top</a>
+			</p>
+			<p class="inner">
+				<small> This page has been inspired by the <a href="https://getbootstrap.com/" style="color: tomato">Bootstrap</a> Templates.
+				<br>
+				localhost website has been made by <a href="https://twitter.com/AndlerRL" style="color: tomato">@Andler</a>. </small>
+			</p>
+		</div>
+	</footer>
+{% endblock %}

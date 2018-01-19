@@ -1,0 +1,65 @@
+{% extends 'layout.html' %}
+
+{% block form %}
+<div class="site-wrapper"  style="margin-top: -180px; height: 140%;">
+	<div class="site-wrapper-inner">
+		<div class="cover-container">
+			<header class="masthead clearfix">
+				<div class="inner">
+					<h3 class="masthead-brand">
+						<img src="/img/favicon.ico" style="width: 80px; height: 90px; margin-top: -40px;">
+						Got our Memes</h3>
+					<nav class="nav nav-masthead">
+						<a class="nav-link" href="/">Home</a>
+						<a class="nav-link" href="/gallery">Gallery</a>
+						<a class="nav-link active" href="/login">Sign In</a>
+					</nav>
+				</div>
+			</header>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<br>
+			<div class="row clearfix">
+				<form class="form-signin" action="/login" method="POST" role="form">
+					<h4 class="form-sigin-heading">Please, sign in with your account</h4>
+					<br>
+					<label for="inputUser" class="sr-only">User Account</label>
+					<input type="text" id="inputUser" name="user" class="form-control" placeholder="Username" required autofocus>
+
+					<label for="inputPassword" class="sr-only">Password</label>
+					<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+					<br>
+					<br>
+					<button class="btn btn-lg btn-primary btn-block" type="submit"><span><img src="/img/log-in.png" alt=""></span> Sign In</button>
+					<br>
+					<span id="msgError"></span>
+				</form>
+				<br>
+				<p class="lead offset-3" style="color: white">Don't have an account yet? Please <a href="/registry" style="color: tomato;">sign up</a>!<br>
+					Or, sign in with
+					<a href="/auth/twitter" style="position: relative"><img src="/img/twitter.png" style="width: 40px; height: 40px; position: relative;"></a>
+					<a href="/auth/facebook" style="position: relative"><img src="/img/fb.png" style="width: 40px; height: 40px; position: relative"></a>
+				</p>
+			</div>
+
+			<footer class="text-muted">
+				<div class="container">
+					<p class="inner">
+						<small> This page has been inspired by the
+							<a href="https://getbootstrap.com/" style="color: tomato">Bootstrap</a> Templates.
+							<br> localhost website has been made by
+							<a href="https://twitter.com/AndlerRL" style="color: tomato">@Andler</a>. </small>
+					</p>
+				</div>
+			</footer>
+		</div>
+	</div>
+</div>
+{% endblock %}

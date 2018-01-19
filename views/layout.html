@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit= yes">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>GOM</title>
+
+	<link rel="icon" href="/img/favicon.ico">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/cover.css">
+    <link rel="stylesheet" href="/css/signin.css">
+    <link rel="stylesheet" href="/css/album.css">
+
+    <style>
+    #target {
+        border: 1px solid;
+        width: 100px;
+        height: 50px;
+        border: 1px solid;
+        margin-left: 50px;
+        -webkit-transform: rotate(270deg);
+                transform: rotate(270deg);
+        margin-top: 100px;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        user-select: none;
+    }   
+    </style>
+    
+</head>
+<body style="margin: 0 auto;">
+
+{% block index %}
+{% endblock %}
+
+{% block form %}
+{% endblock %}
+
+{% block gallery %}
+{% endblock %}
+
+{% block edit %}
+{% endblock %}
+
+{% block error %}
+{% endblock %}
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="http://code.jquery.com/jquery-3.2.1.js"></script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/tooltip.js"></script>
+<script src="/js/util.js"></script>
+
+<script>
+    var socket = io();
+    window.onload = function() {
+        socket.on('connect', () => {
+            canvas = document.getElementsByTagName('canvas')[0].getContext('2d'),
+                click = false,
+                img = new Image(600, 500);
+
+            img.src = $('#idEditImg').val();
+            img.onload = function() {
+                canvas.drawImage(img, 10, 10);
+            };
+
+            $(window).mousedown(function() {
+                click = true;
+            });
+
+            $(window).mouseup(function() {
+                click = false;
+            });
+
+            $('canvas').mousedown((e) => {
+                draw(e.pageX, e.pageY);
+            });
+
+            $('canvas').mouseup((e) => {
+                draw(e.pageX, e.pageY);
+            });
+
+            $('canvas').mousemove((e) => {
+                if (click === true) {
+                    socket.emit('draw', {
+                        pageX: e.pageX,
+                        pageY: e.pageY
+                    })
+                    draw(e.pageX, e.pageY);
+                }
+            });
+
+            socket.on('move', (e) => {
+                draw(e.pageX, e.pageY);
+            });
+
+            function draw(xPos, yPos) {
+                canvas.beginPath();
+                canvas.fillStyle = $('input[type=color]').val();
+                canvas.arc(xPos - $('canvas').offset().left, yPos - $('canvas').offset().top, $('input[type=range]').val(), 0, 2 * Math.PI);
+                canvas.fill();
+                canvas.closePath();
+            }
+
+            var range= $('input[type=range]').val();
+            $("#rangeVal").text('Pencil density: ' + range + 'px');
+        });
+    }
+</script>
+</body>
+</html>
