@@ -1,77 +1,87 @@
-{% extends 'layout.html' %}
-
-
-{% block gallery %}
-<body>
-<div style="background: url(/img/memes.jpg); width: 100%; height: 155%">
-    <div class="background" style="opacity: .98">
-    <div class="site-wrapper" style="margin-top: 0; height: 100%;">
-        <div class="site-wrapper-inner">
-                <header class="col-md-12" style="background-color: rgba(0, 0, 0, .80); margin-top: -50px;">
-                    <div class="navbar navbar-dark " style="width: auto">
-                        <div class="container d-flex justify-content-between">
-                            <img src="/img/favicon.ico" style="width: 80px; height: 90px;">
-                            <span class="navbar-brand text-left" style="position: relative; left: -15%;">Got our Memes</span>
-                            <span class="text-right" style="right: -14%; position: relative">Hi, {{user}}!</span>
-                            <a href="/" class="btn btn-danger">
-                                <span>
-                                    <img src="/img/log-out.png" alt="">
-                                </span> Sign out</a>
-                        </div>
+{% extends 'layout.html' %} {% block gallery %}
+<div style="background: url(/img/memes.jpg); width: 100%; min-height: 130%; margin-top: -40px">
+    <div class="background">
+        <div class="site-wrapper" style="margin-top: 0; min-height: 100%;">
+            <header class="col-md-12" style="background-color: #050505">
+                <div class="navbar navbar-dark " style="width: auto">
+                    <div class="container d-flex justify-content-between">
+                        <img src="/img/favicon.ico" style="width: 80px; height: 90px;">
+                        <span class="navbar-brand text-left" style="position: relative; left: -15%;">Got our Memes</span>
+                        <span class="text-right" style="right: -14%; position: relative">Hi, {{user}}!</span>
+                        <a href="/" class="btn btn-danger">
+                            <span>
+                                <img src="/img/log-out.png" alt="">
+                            </span> Sign out</a>
                     </div>
-                </header>
-                <main role="main" class="col-md-8 offset-3">
-                    <div class="editor">
-                        <input type="hidden" value="{{idImg}}" id="idEditImg">
-                        <div class="canvas">
-                            <canvas id="canvas" width="600" height="500">
+                </div>
+            </header>
+            <main role="main" class="justify-content-center">
+                <div class="editor">
+                    <input type="hidden" value="{{idImg}}" id="idEditImg">
+                    <div class="canvas">
+                        <canvas id="canvas" width="600" height="500">
 
-                            </canvas>
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                        <div class="controls">
-                            <div class="options input-group-sm" style="display: inline-flex">
-                                <div class="form-group">
-                                    <label for="color" class="lead"><small>Choose your pencil color</small></label><br>
-                                    <input type="color" value="#000000" style="background-color: bisque; width: 45px; height: 45px;
-                                    border: 3px solid bisque; border-radius: 2px;">
-                                </div>
-                                <br>
-                                <div class="form-group">
-                                    <label for="range" class="lead"><small>Choose the density of your pencil</small></label><br>
-                                    <input type="range" min="5" max="30" value="15" class="form-control-range" style="background-color: bisque;
-                                    width: 150px; height: 30px; border: 3px solid bisque; border-radius: 6px; margin: .5em auto; margin-top: 0; margin-bottom: -30px; position: relative"><br>
-                                    <span id="rangeVal" class="lead" style="font-weight: 300; font-size: .75em; margin: 0 auto; background: transparent; position: relative"></span>
-                                </div>                               
+                        </canvas>
+                    </div>
+                    <div class="controls">
+                        <div class="options input-group-sm" style="display: inline-flex">
+                            <div class="form-group">
+                                <label for="color" class="lead">
+                                    <i class="fa fa-paint-brush" id="brush"></i>
+                                    <input id="color" type="color" value="#000000" hidden>
+                                </label>
                             </div>
-                            <br>
-                            <a href="/gallery" class="btn btn-lg btn-success" onclick="$('{{img}}').val();document.forms[0].submit();">Save</a>
-                            <a href="/gallery" class="btn btn-lg btn-danger">Return</a>
+                            <div class="form-group">
+                                <label for="range" class="lead">
+                                    <small>Choose the density of your pencil</small>
+                                </label>
+                                <input type="range" min="5" max="30" value="15" class="form-control-range" style="background-color: bisque;
+                                    width: 150px; height: 30px; border: 3px solid bisque; border-radius: 6px; margin: .5em auto; margin-top: 0; margin-bottom: -30px; position: relative">
+                                <i class="fa fa-pencil fa-align-left"></i>
+                                <span id="rangeVal" class="lead" style="font-weight: 300; font-size: .75em; margin: 0 auto; background: transparent; position: relative"></span>
+                            </div>
                         </div>
+                        <a href="/gallery" class="btn btn-lg btn-success" onclick="$('{{img}}').val();document.forms[0].submit();">Save</a>
+                        <a href="/gallery" class="btn btn-lg btn-danger">Return</a>
                     </div>
-                </main>
-
-                <footer class="text-muted">
-                    <div class="container">
-                        <p class="float-right">
-                            <a href="#">Back to top</a>
-                        </p>
-                        <p class="inner">
-                            <small> This page has been inspired by the
-                                <a href="https://getbootstrap.com/">Bootstrap</a> Templates.
-                                <br> localhost website has been made by
-                                <a href="https://twitter.com/AndlerRL">@Andler</a>. </small>
-                        </p>
+                </div>
+                
+            </main>
+            <br>
+            <br>
+            <footer class="text-muted">
+                <div class="container">
+                    <p class="float-right">
+                        <a href="#">Back to top</a>
+                    </p>
+                    <p class="inner">
+                        <small> Website Developed by
+                            <a href="mailto:andre.rlucas@outlook.com">@Andler</a>. © 2017 All Rights Reserved.</small>
+                    </p>
+                    <div class="container" style=" margin-top: -35px">
+                        <a href="https://facebook.com/Megalife1294" target="_blank" style="text-decoration: none; margin: 5px" title="Facebook Profile">
+                            <i class="fa fa-facebook-f" style="font-size: 1.5em;"></i>
+                        </a>
+                        <a href="https://twitter.com/AndlerRL" target="_blank" style="text-decoration: none; margin: 5px" title="Twitter Profile">
+                            <i class="fa fa-twitter" style="font-size: 1.5em;"></i>
+                        </a>
+                        <a href="https://stackoverflow.com/users/9221863/m-lucas?tab=profile" style="text-decoration: none; margin: 5px" title="StackOverFlow">
+                            <i class="fa fa-stack-overflow" style="font-size: 1.5em"></i>
+                        </a>
+                        <a href="https://github.com/AndlerRL" style="text-decoration: none; margin: 5px" title="GitHub Repo">
+                            <i class="fa fa-github" style="font-size: 1.5em"></i>
+                        </a>
                     </div>
-                </footer>
-            </div>
+                </div>
+            </footer>
         </div>
     </div>
-</body>
+</div>
 {% endblock %}
+
+<script>
+    
+</script>
 
 <!-- <script>
     var App = {};

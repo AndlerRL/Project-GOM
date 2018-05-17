@@ -1,55 +1,55 @@
-var user= require('../controllers/user'),
-fs= require('fs'),
-swig= require('swig');
-var chalk = require('chalk'),
+const user = require('../controllers/user'),
+    fs = require('fs'),
+    swig = require('swig'),
+    chalk = require('chalk'),
     warnings = chalk.bold.bgRed.whiteBright,
     adv = chalk.gray.bgWhite,
     notf = chalk.bgBlue.yellow;
 
 // Rasteando ip_address
 
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
-var os = require('os');
-var ifaces = os.networkInterfaces();
-var listen_addr = null;
+let os = require('os');
+let ifaces = os.networkInterfaces();
+let listen_addr = null;
 
 app.set('trust proxy', true);
 
 // Terminando de rastear ip...
 
-var routes= (app)=> {
-    app.get('/error', (req, res)=> {
+const routes = (app) => {
+    app.get('/error', (req, res) => {
         swig.renderFile(__dirname + '/../views/error.html');
     });
 
-    app.get('/', (req, res)=> {
+    app.get('/', (req, res) => {
         res.render('index');
         console.log(warnings('::Incoming Connection::'));
         console.log(adv('remoteAddress method: ') + req.connection.remoteAddress);
         console.log(adv('req.ips (x-forwarded-for) header method: ') + req.ips);
     });
 
-    app.get('/login', (req, res)=> {
+    app.get('/login', (req, res) => {
         res.render('login');
         console.log(warnings('::Incoming Connection::'));
         console.log(adv('remoteAddress method: ') + req.connection.remoteAddress);
         console.log(adv('req.ips (x-forwarded-for) header method: ') + req.ips);
     });
-    
-    app.get('/registry', (req, res)=> {
+
+    app.get('/registry', (req, res) => {
         res.render('registry');
         console.log(warnings('::Incoming Connection::'));
         console.log(adv('remoteAddress method: ') + req.connection.remoteAddress);
         console.log(adv('req.ips (x-forwarded-for) header method: ') + req.ips);
     });
-    
+
     app.get('/gallery', (req, res) => {
-        var imgs= [];
-        fs.readdir(__dirname + '/../public/gallery/', (err, files)=> {
+        const imgs = [];
+        fs.readdir(__dirname + '/../public/gallery/', (err, files) => {
             if (!err) {
-                for (var i= 0; i < files.length; i++) {
+                for (var i = 0; i < files.length; i++) {
                     imgs.push('/gallery/' + files[i]);
                 }
             } else { console.log(err); }
@@ -59,39 +59,39 @@ var routes= (app)=> {
             user: req.session.passport.user.name,
             imgs: imgs
         },
-        (err, output)=> {
-            if (err) { throw err; }
-            res.send(output);
-            res.end();
-        });
+            (err, output) => {
+                if (err) { throw err; }
+                res.send(output);
+                res.end();
+            });
 
         console.log(warnings('::Incoming Connection::'));
         console.log(adv('remoteAddress method: ') + req.connection.remoteAddress);
         console.log(adv('req.ips (x-forwarded-for) header method: ') + req.ips);
     });
-    
+
     app.get('/editor', (req, res) => {
         console.log(warnings('::Incoming Connection::'));
         console.log(adv('remoteAddress method: ') + req.connection.remoteAddress);
         console.log(adv('req.ips (x-forwarded-for) header method: ') + req.ips);
     });
 
-    app.get('/upload', (req, res)=> {
+    app.get('/upload', (req, res) => {
         swig.renderFile(__dirname + '/../views/upload.html', {
             user: req.session.passport.user.name
         },
-        (err, output)=> {
-            if (err) { throw err; }
-            res.send(output);
-            res.end();
-        });
+            (err, output) => {
+                if (err) { throw err; }
+                res.send(output);
+                res.end();
+            });
 
         console.log(warnings('::Incoming Connection::'));
         console.log(adv('remoteAddress method: ') + req.connection.remoteAddress);
         console.log(adv('req.ips (x-forwarded-for) header method: ') + req.ips);
     });
 
-    app.post('/upload', user.loadImg, (req, res)=> {
+    app.post('/upload', user.loadImg, (req, res) => {
         res.redirect('gallery');
     })
 
@@ -100,11 +100,11 @@ var routes= (app)=> {
             idImg: req.body.idImg,
             user: req.session.passport.user.name
         },
-        (err, output)=> {
-            if (err) { throw err; }
-            res.send(output);
-            res.end();
-        });
+            (err, output) => {
+                if (err) { throw err; }
+                res.send(output);
+                res.end();
+            });
     });
 
     app.post('/registry', user.registry, (req, res) => {
@@ -112,7 +112,7 @@ var routes= (app)=> {
     });
 
     Object.keys(ifaces).forEach((ifname) => {
-        var alias = 0;
+        let alias = 0;
 
         ifaces[ifname].forEach((iface) => {
             if ('IPv4' !== iface.family || iface.internal !== false) { return; }
@@ -129,4 +129,4 @@ var routes= (app)=> {
     });
 };
 
-module.exports= routes;
+module.exports = routes;

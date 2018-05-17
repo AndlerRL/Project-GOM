@@ -4042,6 +4042,20 @@ tbody.collapse.show {
   color: #fff;
 }
 
+a i {
+  margin: 0 auto;
+  padding: 0;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  transition: .5s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+}
+
+a i:hover {
+  color: var(--yellow);
+  transition: 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) all;
+  transform: rotate(360deg);
+}
+
 .card {
   position: relative;
   display: -ms-flexbox;
@@ -4049,10 +4063,12 @@ tbody.collapse.show {
   -ms-flex-direction: column;
       flex-direction: column;
   min-width: 0;
+  padding: 16px;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: transparent;
+  box-shadow: 0 4px 6px 1px #ccc;
   border-radius: 0.25rem;
 }
 

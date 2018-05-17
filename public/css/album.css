@@ -1,12 +1,13 @@
-
+* {
+  transition: .33s cubic-bezier(0.075, 0.82, 0.165, 1) all;
+}
 
 .navbar {
   margin-bottom: 0;
 }
 
 .jumbotron {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
+  padding: 6rem;
   margin-bottom: 0;
   background-color: #ddd;
 }
@@ -34,20 +35,24 @@ p.lead, p.text-muted {
 }
 
 .album {
-  min-height: 50rem; /* Can be removed; just added for demo purposes */
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  min-height: 100% !important; /* Can be removed; just added for demo purposes */
+  padding: 3rem;
   background-color: #f7f7f7;
 }
 
-.card {
-  float: left;
-  width: 33.333%;
-  padding: .75rem;
-  margin-bottom: 2rem;
-  border: 3px solid #DDDDDD;
+.card_album {
+  width: 100%;
+  margin: 0 0 .75em 0;
+  padding: .5rem;
+  border: transparent;
   border-radius: 2px;
-  box-shadow: 0 0 10px rgba(30,30,30,.105); 
+  box-shadow: 0 4px 8px 2px rgba(30,30,30,.3); 
+}
+
+.card_album2 {
+  width: 30%;
+  display: -ms-inline-grid;
+  flex-direction: column;
 }
 
 .card > img {
@@ -58,9 +63,15 @@ p.lead, p.text-muted {
   font-size: 85%;
 }
 
+.green-background {
+  background: url("../img/solid-green-background.jpg") no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
 footer {
-  padding-top: 3rem;
-  padding-bottom: 3rem;
+  padding: 3rem;
 }
 
 footer p {

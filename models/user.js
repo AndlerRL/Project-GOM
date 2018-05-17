@@ -38,7 +38,7 @@ var userSchema= new Schema({
     },
     _parent: Objectid,
     twitter: Schema.Types.Mixed,
-    // facebook: Schema.Types.Mixed,
+    facebook: Schema.Types.Mixed,
 });
 
 var User= model.model('User', userSchema, 'user_session');
